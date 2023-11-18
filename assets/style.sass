@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Actor&family=Inter:wght@200;400;700&family=Mallanna&display=swap')
+
+body, html 
+  padding: 0
+  margin: 0
+  width: 100vw
+  background-color: #344e41
+  color: #dad7cd
+  font-family: 'Inter', sans-serif !important
+  font-weight: 200
+  font-style: normal 
+
+.product
+  display: flex
+  align-items: center
+  flex-direction: column
+  width: 100vw
+
+  .product-title
+    z-index: 10
+    text-shadow: 0px 0px 10px black
+    width: 60vw
+    text-align: center
+
+  .product-img
+    height: 90%
+    position: absolute
+    z-index: 15
+
+  .bg
+    height: 100% !important
+    width: 335px
+    z-index: 10
+    filter: brightness(0)
+    opacity: 0.35
+
+  .product-img-container
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    height: 320px
+
+  .product-score-container
+    width: 100%
+    display: flex
+    justify-content: center
+
+    h2
+      margin: 0
+      margin-bottom: 10px
+      
+    .product-score-smileys
+      display: flex
+      justify-content: center
+      flex-direction: row
+      gap: 20px
+    .product-score-bg
+      padding: 20px
+      width: 210px
+      /*background: rgba(236,90,90,0.2)*/
+      /*background: linear-gradient(90deg, rgba(236,90,90,0.2) 0%, rgba(237,218,119,0.2) 48%, rgba(134,213,106,0.2) 100%)*/
+      border-radius: 20px
+
+    img
+      width: 60px
+
+.product-recommendations
+  width: 100vw
+  height: 120px
+  display: flex
+  justify-content: center
+  flex-direction: row
+  padding-top: 30px
+  .rec
+    transition: transform 0.2s
+    &:hover
+      transform: scale(2)
+    height: 100%
+  .product-recommendation-container
+    height: 100%
+    .product-recommendation-img
+      height: 100%
+
+.disabled
+  opacity: 0.15
+  filter: grayscale(60%)
+
+#qrcode
+  border-radius: 25px
+  margin-top: 80px
+  height: 190px
+  width: 350px
+  overflow: hidden
+  border: 5px dashed white
+  div
+    div
+      div
+        display: none
+  video
+    transform: translateY(0%)
+    max-width: 100%
