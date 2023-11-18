@@ -44,15 +44,29 @@ const ean = ref();
 const button_clicked = () => {
   navigateTo( `/products/product-${ean.value}`);
 }
+
+const new_elem = document.createElement('div')
+new_elem.classList += "qrcode-placeholder"
+const img_elem = document.createElement('img')
+img_elem.src = '/barcode2.png'
+new_elem.appendChild(img_elem)
+onMounted(() => {
+  console.log(document.getElementById('qrcode'))
+  setTimeout(() => {
+    document.getElementById('qrcode').append(new_elem)
+  }, 300)
+  
+})
 </script>
 
 <template>
   <div>
-    <div id="qrcode"></div>
+    <div id="qrcode">
+    </div>
     <div class="ean-input-container">
       <label for="ean-input">Manuelle EAN Eingabe:</label>
       <div>
-        <input v-model="ean" id="ean-input" type="text">
+        <input v-model="ean" id="ean-input" type="text" class="button-with-svg">
         <button @click="button_clicked()">
           <img src="/arrow_back.svg" alt="">
         </button>

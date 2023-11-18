@@ -11,7 +11,8 @@ export interface FetchResults {
   packagingType:      string;
   productImage:       string;
   barcode:            string;
-  materials:           Material[] | null;
+  price:              number;
+  materials:          Material[] | null;
   isRecyclable:       boolean;
   recommendations:    FetchResults[];
   productScore:       number;

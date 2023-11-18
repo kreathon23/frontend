@@ -24,8 +24,8 @@ const navigate_back = () => {
         </div>
       </div>
     </div>
-    <div class="avatar">
+    <!--<div class="avatar">
       <img class="logo-img" src="/landing-page/user-circle-2.svg" alt="">
-    </div>
+    </div>-->
   </div>
 </template>
