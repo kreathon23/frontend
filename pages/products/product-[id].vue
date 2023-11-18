@@ -10,27 +10,10 @@ if (!validate_product_id(product_id)) {
 //fetch product data
 const product_img = "1100339.png";
 
-
-export interface Material {
-  type:               string;
-  examples:           string;
-  code:               number;
-}
-
-export interface FetchResults {
-  productName:        string;
-  productDescription: string;
-  packagingType:      string;
-  productImage:       string;
-  barcode:            string;
-  material:           Material | null;
-  isRecyclable:       boolean;
-  recommendations:    FetchResults[];
-  productScore:       number;
-}
-
 const { data, pending, error, refresh } = await useFetch(`https://kreathon23-api.jh220.de/v1/products/${product_id}`);
 const results =  (await data.value) as FetchResults;
+
+console.log(results)
 
 const navigate = (barcode: string) => {
   const new_url = `/products/product-${barcode}`;
@@ -56,6 +39,7 @@ const navigate = (barcode: string) => {
           </div>
         </div>
       </div>
+      <RecyclingCodes :scores="[90,7]" :materials="results.materials" />
       <div class="product-recommendations">
         <div class="rec" v-for="product, index in results.recommendations" @click="navigate(product.barcode)">
           <div class="product-recommendation-container">
@@ -63,9 +47,6 @@ const navigate = (barcode: string) => {
           </div>
         </div>
       </div>
-      <h1>{{ results.material?.code }}</h1>
-      {{ results.material?.type }}<br>
-      {{ results.material?.examples }}<br>
     </div>
     <div v-else>
       {{ error_occured }}

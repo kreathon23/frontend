@@ -22,32 +22,41 @@ const scanbotSDK = await ScanbotSDK.initialize({licenseKey: LICENSE_KEY});
 
 onMounted(async () => {
   let scanner;
-const configuration = {
-    //  The `id` of the containing HTML element where the Barcode Scanner will be initialized.
-    containerId: 'qrcode',
-    container: document.getElementById('qrcode'),
-    onBarcodesDetected: (result) => {
-        // If you're happy with the result, dispose the scanner right away
-        scanner.dispose();
-        // Otherwise the scanner will continue scanning and delivering results
-        const format = result.barcodes[0].format // The barcode's symbology
-        const text = result.barcodes[0].text 
-        navigateTo( `/products/product-${text}`);
-    },
-}
-// @ts-ignore
-scanner = await scanbotSDK.createBarcodeScanner(configuration);
-
+  const configuration = {
+      //  The `id` of the containing HTML element where the Barcode Scanner will be initialized.
+      containerId: 'qrcode',
+      container: document.getElementById('qrcode'),
+      onBarcodesDetected: (result) => {
+          // If you're happy with the result, dispose the scanner right away
+          scanner.dispose();
+          // Otherwise the scanner will continue scanning and delivering results
+          const format = result.barcodes[0].format // The barcode's symbology
+          const text = result.barcodes[0].text 
+          navigateTo( `/products/product-${text}`);
+      },
+  }
+  // @ts-ignore
+  scanner = await scanbotSDK.createBarcodeScanner(configuration);
 })
 
+const ean = ref();
 
+const button_clicked = () => {
+  navigateTo( `/products/product-${ean.value}`);
+}
 </script>
 
 <template>
   <div>
-    <div id="container"></div>
-    <div id="qrcode">
-
+    <div id="qrcode"></div>
+    <div class="ean-input-container">
+      <label for="ean-input">Manuelle EAN Eingabe:</label>
+      <div>
+        <input v-model="ean" id="ean-input" type="text">
+        <button @click="button_clicked()">
+          <img src="/arrow_back.svg" alt="">
+        </button>
+      </div>
     </div>
   </div>
 </template>
